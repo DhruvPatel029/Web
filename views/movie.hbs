@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        p.title {
+            font-weight: bold;
+        }
+
+        p.genres {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Movies</h1>
+    <ul>
+        {{#each movies}}
+        <li>
+            <p class="title">Title: {{ this.title }}</p>
+            <p>Released: {{ this.released }}</p>
+            <p>Plot: {{ this.plot }}</p>
+            <p>Runtime: {{ this.runtime }}</p>
+            <p>Cast:
+                {{#each this.cast}}
+                {{ this }}{{ @last }}{{else}}, {{/each}}
+            </p>
+            <p>Number of Comments: {{ this.num_mflix_comments }}</p>
+            <p>Languages:
+                {{#each this.languages}}
+                {{ this }}{{ @last }}{{else}}, {{/each}}
+            </p>
+            <p>Directors:
+                {{#each this.directors}}
+                {{ this }}{{ @last }}{{else}}, {{/each}}
+            </p>
+            <p>Rated: {{ this.rated }}</p>
+            <p>Awards: {{ this.awards.text }}</p>
+            <p>IMDb Rating: {{ this.imdb.rating }}</p>
+            <p>IMDb Votes: {{ this.imdb.votes }}</p>
+            <p>Country:
+                {{#each this.countries}}
+                {{ this }}{{ @last }}{{else}}, {{/each}}
+            </p>
+            <p>Type: {{ this.type }}</p>
+
+            {{#if this.tomatoes}}
+            <p>Tomatoes Viewer Meter: {{ this.tomatoes.viewer.meter }}</p>
+
+            {{/if}}
+        </li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
